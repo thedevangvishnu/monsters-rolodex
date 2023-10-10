@@ -22,8 +22,10 @@ class App extends Component {
 
   render() {
     // console.log("render");
-    const filteredMonsters = this.state.monsters.filter((monster) =>
-      monster.name.toLocaleLowerCase().includes(this.state.searchField)
+    const { monsters, searchField } = this.state;
+
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLocaleLowerCase().includes(searchField)
     );
     // console.log(filteredMonsters);
 
@@ -39,7 +41,17 @@ class App extends Component {
             }}
           />
           {filteredMonsters.map((monster) => {
-            return <h2 key={monster.id}>{monster.name}</h2>;
+            const { id, name, email } = monster;
+            return (
+              <div key={id}>
+                <img
+                  src={`https://robohash.org/${id}?set=set2&size=200x200`}
+                  alt={name}
+                />
+                <h2>{name}</h2>
+                <p>{email}</p>
+              </div>
+            );
           })}
         </header>
       </div>
