@@ -1,5 +1,6 @@
 import { Component } from "react";
-import logo from "./logo.svg";
+import CardList from "./components/card-list/CardList";
+import SearchBox from "./components/search-box/SearchBox";
 import "./App.css";
 
 class App extends Component {
@@ -20,39 +21,30 @@ class App extends Component {
       .then((users) => this.setState({ monsters: users }));
   }
 
+  handleChange = (event) => {
+    const searchString = event.target.value.toLocaleLowerCase();
+    this.setState({ searchField: searchString });
+  };
+
   render() {
     // console.log("render");
     const { monsters, searchField } = this.state;
+    const { handleChange } = this;
 
     const filteredMonsters = monsters.filter((monster) =>
       monster.name.toLocaleLowerCase().includes(searchField)
     );
-    // console.log(filteredMonsters);
 
     return (
       <div className="App">
         <header className="App-header">
-          <input
-            type="search"
-            placeholder="search monster"
-            onChange={(event) => {
-              const searchString = event.target.value.toLocaleLowerCase();
-              this.setState({ searchField: searchString });
-            }}
+          <SearchBox
+            changeHandler={handleChange}
+            placeholderText="search monster"
           />
-          {filteredMonsters.map((monster) => {
-            const { id, name, email } = monster;
-            return (
-              <div key={id}>
-                <img
-                  src={`https://robohash.org/${id}?set=set2&size=200x200`}
-                  alt={name}
-                />
-                <h2>{name}</h2>
-                <p>{email}</p>
-              </div>
-            );
-          })}
+          <div>
+            <CardList monsters={filteredMonsters} />
+          </div>
         </header>
       </div>
     );
