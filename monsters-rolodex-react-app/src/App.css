@@ -19,7 +19,7 @@ body {
     rgb(152, 73, 241) 100%
   );
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .app__title {
@@ -29,5 +29,4 @@ body {
   letter-spacing: 2px;
   color: rgb(253, 255, 255);
   text-shadow: 3px 3px 9px rgba(0, 0, 0, 0.2);
-  margin-bottom: rem;
 }
