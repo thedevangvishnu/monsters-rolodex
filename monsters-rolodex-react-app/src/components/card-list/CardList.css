@@ -1,0 +1,15 @@
+.card__list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 2rem 5rem;
+  padding-bottom: 5rem;
+  height: 500px;
+  overflow: scroll;
+}
+
+.card__list::-webkit-scrollbar {
+  display: none;
+}
